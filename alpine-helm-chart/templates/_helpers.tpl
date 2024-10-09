@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "annotation-service.name" -}}
+{{- define "project-a.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "annotation-service.fullname" -}}
+{{- define "project-a.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,37 +26,37 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "annotation-service.chart" -}}
+{{- define "project-a.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "annotation-service.labels" -}}
-helm.sh/chart: {{ include "annotation-service.chart" . }}
-{{ include "annotation-service.selectorLabels" . }}
+{{- define "project-a.labels" -}}
+helm.sh/chart: {{ include "project-a.chart" . }}
+{{ include "project-a.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-app: annotation-service
+app: project-a
 {{- end }}
 
 {{/*
 Selector labels
 */}}
-{{- define "annotation-service.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "annotation-service.name" . }}
+{{- define "project-a.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "project-a.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "annotation-service.serviceAccountName" -}}
+{{- define "project-a.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "annotation-service.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "project-a.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
