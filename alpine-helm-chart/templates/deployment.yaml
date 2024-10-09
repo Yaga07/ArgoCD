@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "annotation-service.fullname" . }}
+  name: {{ include "project-a.fullname" . }}
   labels:
-    {{- include "annotation-service.labels" . | nindent 4 }}
+    {{- include "project-a.labels" . | nindent 4 }}
   annotations:    
     {{- if .Values.deploymentAnnotations }}
     {{- toYaml .Values.deploymentAnnotations | nindent 4 }}
@@ -14,7 +14,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "annotation-service.selectorLabels" . | nindent 6 }}
+      {{- include "project-a.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -22,13 +22,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "annotation-service.selectorLabels" . | nindent 8 }}
+        {{- include "project-a.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      #serviceAccountName: {{ include "annotation-service.serviceAccountName" . }}
+      #serviceAccountName: {{ include "project-a.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
