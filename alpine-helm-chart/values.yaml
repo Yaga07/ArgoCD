@@ -1,0 +1,78 @@
+replicaCount: 1
+
+image:
+  repository: alpine
+  pullPolicy: Always
+  tag: latest                                                                                ### Dynamic
+
+imagePullSecrets: 
+  - name: regcred
+nameOverride: ""
+fullnameOverride: ""
+
+deploymentAnnotations:  
+  reloader.stakater.com/auto: "true"
+
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+
+volumeMounts:
+  - mountPath: /usr/src/app/assetstore
+    name: aijob                     # EFS volume name
+    subPath: JOB_aijob
+  - mountPath: /aijob           
+    name: aijob                     # EFS volume name
+    subPath: APP_assetstore
+
+
+volumes:
+  awsEKSCluster: false                                                                         ### Dynamic
+  pvc_name: test-lite                                                                      ### Dynamic
+  vol_name: aijob                   # EFS volume name
+  efs_path: /APPDATA 
+  efs_type: DirectoryOrCreate 
+
+envFromConfigMap:
+  NODE_ENV: production
+  ENV: development
+  PORT: "3000"
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: false
+  
+resources:
+  requests:
+    cpu: 200m
+    memory: 160Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: 
+  type: cpu                                                                                             ### Dynamic
+
+tolerations: []
+
+affinity: {}
