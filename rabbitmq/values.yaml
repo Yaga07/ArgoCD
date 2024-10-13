@@ -1,0 +1,28 @@
+image:
+  repository: rabbitmq
+  pullPolicy: IfNotPresent
+  tag: 3.8-management-alpine
+
+volumes:
+  awsEKSCluster: false
+  pvc_name: rabbitmq-pvc                                                                  #### provide name of newly created pvc 
+
+envFromConfigMap:
+  RABBITMQ_DEFAULT_USER: "admin"
+  RABBITMQ_DEFAULT_PASS: "WBA5081npbNzKsGUcwPz"
+  RABBITMQ_MAX_MESSAGE_SIZE: "134217728"
+  RABBITMQ_VM_MEMORY_HIGH_WATERMARK: "0.8"
+
+ingress:
+  enabled: false
+
+resources: 
+  requests:
+    cpu: 50m
+    memory: 160Mi
+
+service:
+  type: ClusterIP
+  portA: 15672
+  portB: 5671
+  portC: 5672

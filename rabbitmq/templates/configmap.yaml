@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}
+data:
+{{- if .Values.envFromConfigMap }}
+{{ toYaml .Values.envFromConfigMap | indent 2 }}
+{{- end }}
