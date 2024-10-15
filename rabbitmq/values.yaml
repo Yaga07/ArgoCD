@@ -8,7 +8,7 @@ volumes:
   pvc_name: rabbitmq-pvc                                                                  #### provide name of newly created pvc 
 
 pvc:
-  name: rabbitmq-pvc
+  name: rabbitmq
   storageClassName: "local-storage" # or your desired storage class
   accessModes:
     - ReadWriteOnce
