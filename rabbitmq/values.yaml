@@ -7,6 +7,9 @@ volumes:
   awsEKSCluster: false
   pvc_name: rabbitmq-pvc                                                                  #### provide name of newly created pvc 
 
+autoscaling:
+  enabled: false
+
 pvc:
   name: rabbitmq
   storageClassName: "local-storage" # or your desired storage class
