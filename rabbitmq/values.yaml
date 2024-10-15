@@ -7,6 +7,12 @@ volumes:
   awsEKSCluster: false
   pvc_name: rabbitmq-pvc                                                                  #### provide name of newly created pvc 
 
+pvc:
+  name: rabbitmq-pvc
+  storageClassName: "local-storage" # or your desired storage class
+  accessModes:
+    - ReadWriteOnce
+
 envFromConfigMap:
   RABBITMQ_DEFAULT_USER: "admin"
   RABBITMQ_DEFAULT_PASS: "WBA5081npbNzKsGUcwPz"
