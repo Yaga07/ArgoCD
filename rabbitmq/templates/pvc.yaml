@@ -4,8 +4,6 @@ metadata:
   name: "{{ .Values.pvc.name }}"
   labels:
     app: "{{ .Values.pvc.name }}"
-  annotations:
-    volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/aws-ebs
 spec:
   accessModes:
     - ReadWriteOnce
