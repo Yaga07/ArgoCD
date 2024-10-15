@@ -62,7 +62,7 @@ spec:
       {{- if .Values.volumes.usePVC }}
       - name: {{ .Chart.Name }}
         persistentVolumeClaim:
-          claimName: {{ .Values.volumes.pvcName }}
+          claimName: rabbitmq
       {{- else }}
       - hostPath:
           path: /APPDATA
