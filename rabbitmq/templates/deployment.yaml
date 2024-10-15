@@ -43,7 +43,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
           - mountPath: /var/lib/rabbitmq
-            name: rabbimq            
+            name: rabbitmq
       dnsPolicy: ClusterFirst
       {{- with .Values.nodeSelector }}
       nodeSelector:
