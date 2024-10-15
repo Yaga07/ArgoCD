@@ -16,7 +16,7 @@ spec:
           ports:
             - containerPort: {{ .Values.containerPort }}
   strategy:
-    canary:
+    blueGreen:
       steps:
         - setWeight: 20
         - pause: {}
