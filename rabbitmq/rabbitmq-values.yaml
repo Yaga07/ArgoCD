@@ -3,18 +3,15 @@ image:
   pullPolicy: IfNotPresent
   tag: 3.8-management-alpine
 
-volumes:
-  awsEKSCluster: false
-  pvc_name: rabbitmq                                                                  #### provide name of newly created pvc 
-
 pvc:
   name: rabbitmq
-  storageClassName: "local-storage" # Adjust to your storage class
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 8Gi # Adjust to your desired storage size
+  storage: 5Gi
+  storageClassName: local-storage
+
+  volumes:
+    awsEKSCluster: false
+    pvc_name: rabbitmq
+
 
 
 
