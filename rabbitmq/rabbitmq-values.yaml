@@ -5,7 +5,7 @@ image:
 
 volumes:
   awsEKSCluster: false
-  pvc_name: rabbitmq-pvc                                                                  #### provide name of newly created pvc 
+  pvc_name: rabbitmq                                                                  #### provide name of newly created pvc 
 
 envFromConfigMap:
   RABBITMQ_DEFAULT_USER: "admin"
