@@ -10,9 +10,9 @@ pvc:
   accessModes:
     - ReadWriteOnce
     
-  volumes:
-    awsEKSCluster: false
-    pvc_name: rabbitmq
+volumes:
+  awsEKSCluster: false
+  pvc_name: rabbitmq
 
 
 
