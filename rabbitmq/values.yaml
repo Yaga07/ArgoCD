@@ -3,18 +3,17 @@ image:
   pullPolicy: IfNotPresent
   tag: 3.8-management-alpine
 
-volumes:
-  awsEKSCluster: false
-  pvc_name: rabbitmq                                                         #### provide name of newly created pvc 
-
 autoscaling:
   enabled: false
 
 pvc:
   name: rabbitmq
-  storageClassName: "local-storage" # or your desired storage class
-  accessModes:
-    - ReadWriteOnce
+  storage: 5Gi
+  storageClassName: local-storage
+
+  volumes:
+    awsEKSCluster: false
+    pvc_name: rabbitmq
 
 envFromConfigMap:
   RABBITMQ_DEFAULT_USER: "admin"
