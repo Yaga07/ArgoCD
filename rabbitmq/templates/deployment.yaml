@@ -40,6 +40,7 @@ spec:
           - containerPort: {{ .Values.service.portA }}
             protocol: TCP
           - containerPort: {{ .Values.service.portB }}
+            protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
@@ -60,13 +61,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-      {{- if .Values.volumes.awsEKSCluster }}
       - name: aijob
         persistentVolumeClaim:
-          claimName: {{ .Values.volumes.pvc_name }}
-      {{- else }}
-      - hostPath:
-          path: /APPDATA
-          type: DirectoryOrCreate
-        name: aijob
-      {{- end }}
+          claimName: {{ .Values.volumes.pvcName }}
