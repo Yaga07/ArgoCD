@@ -11,9 +11,9 @@ pvc:
   storage: 5Gi
   storageClassName: local-storage
 
-  volumes:
-    awsEKSCluster: false
-    pvc_name: rabbitmq
+volumes:
+  awsEKSCluster: false
+  pvc_name: rabbitmq
 
 envFromConfigMap:
   RABBITMQ_DEFAULT_USER: "admin"
