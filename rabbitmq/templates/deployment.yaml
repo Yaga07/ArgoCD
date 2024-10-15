@@ -24,7 +24,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      #serviceAccountName: {{ include "rabbitmq.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -40,13 +39,12 @@ spec:
           - containerPort: {{ .Values.service.portA }}
             protocol: TCP
           - containerPort: {{ .Values.service.portB }}
-            protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-          - mountPath: /aijob/rabbitmq
-            name: aijob
-            subPath: JOB_aijob
+          - mountPath: /var/lib/rabbitmq
+            name: rabbimq
+            subPath: rabbitmq-data
       dnsPolicy: ClusterFirst
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -61,6 +59,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-      - name: aijob
+      {{- if .Values.volumes.usePVC }}
+      - name: {{ .Chart.Name }}
         persistentVolumeClaim:
           claimName: {{ .Values.volumes.pvcName }}
+      {{- else }}
+      - hostPath:
+          path: /APPDATA
+          type: DirectoryOrCreate
+        name: rabbitmq
+      {{- end }}
