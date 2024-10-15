@@ -43,8 +43,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
           - mountPath: /var/lib/rabbitmq
-            name: rabbimq
-            subPath: rabbitmq-data
+            name: rabbimq            
       dnsPolicy: ClusterFirst
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -59,13 +58,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-      {{- if .Values.volumes.usePVC }}
-      - name: {{ .Chart.Name }}
+      - name: rabbitmq
         persistentVolumeClaim:
-          claimName: rabbitmq
-      {{- else }}
-      - hostPath:
-          path: /APPDATA
-          type: DirectoryOrCreate
-        name: rabbitmq
-      {{- end }}
+          claimName: {{ .Values.volumes.pvc_name }}
