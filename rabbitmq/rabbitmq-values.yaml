@@ -7,7 +7,9 @@ pvc:
   name: rabbitmq
   storage: 5Gi
   storageClassName: local-storage
-
+  accessModes:
+    - ReadWriteOnce
+    
   volumes:
     awsEKSCluster: false
     pvc_name: rabbitmq
