@@ -17,6 +17,9 @@ spec:
             - containerPort: {{ .Values.containerPort }}
   strategy:
     blueGreen:
+      activeService: rollout-bluegreen-active
+      previewService: rollout-bluegreen-preview
+      autoPromotionEnabled: false
       steps:
         - setWeight: 20
         - pause: {}
