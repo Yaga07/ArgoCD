@@ -19,12 +19,3 @@ spec:
     blueGreen:
       activeService: rollout-bluegreen-active
       autoPromotionEnabled: false
-      steps:
-        - setWeight: 20
-        - pause: {}
-        - setWeight: 40
-        - pause: {duration: 10}
-        - setWeight: 60
-        - pause: {duration: 10}
-        - setWeight: 80
-        - pause: {duration: 10}
