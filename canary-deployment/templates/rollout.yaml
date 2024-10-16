@@ -9,6 +9,10 @@ spec:
     metadata:
       labels:
         app: {{ include "my-app.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "my-app.fullname" . }}
     spec:
       containers:
         - name: {{ include "my-app.fullname" . }}-container
