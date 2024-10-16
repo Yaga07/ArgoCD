@@ -2,8 +2,8 @@ namespace: default
 replicaCount: 5
 
 image:
-  repository:   rabbitmq
-  tag: 3.12.14-management-alpine #3.8-management-alpine  
+  repository: argoproj/rollouts-demo
+  tag:  blue  #3.12.14-management-alpine #3.8-management-alpine  
 
 containerPort:  15672  # Replace with your container port
 
