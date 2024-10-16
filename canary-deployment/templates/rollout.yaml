@@ -5,10 +5,9 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  template:
-    metadata:
-      labels:
-        app: {{ include "my-app.fullname" . }}
+  selector:
+    matchLabels:
+      app: {{ include "my-app.fullname" . }}
   template:
     metadata:
       labels:
