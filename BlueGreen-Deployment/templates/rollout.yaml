@@ -18,11 +18,19 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - containerPort: {{ .Values.containerPort }}
+         resources:
+           requests:
+             memory: 32Mi
+             cpu: 5m      
   strategy:
     canary:
       steps:
-        - setWeight: 20
-        - pause: { duration: 10s }
-        - setWeight: 50
-        - pause: { duration: 10s }
-        - setWeight: 100
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10}
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}
+  revisionHistoryLimit: 2
