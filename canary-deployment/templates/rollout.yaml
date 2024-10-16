@@ -22,4 +22,4 @@ spec:
     blueGreen:
       activeService: {{ include "my-app.service.name" . }}
       previewService: {{ include "my-app.service.name" . }}-preview
-      autoPromotionEnabled: false
+      autoPromotionEnabled: true
