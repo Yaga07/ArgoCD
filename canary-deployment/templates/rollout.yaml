@@ -20,5 +20,5 @@ spec:
             - containerPort: {{ .Values.containerPort }}
   strategy:
     blueGreen:
-      activeService: rollout-bluegreen-active
+      activeService: {{ include "my-app.service.name" . }}
       autoPromotionEnabled: false
