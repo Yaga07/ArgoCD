@@ -18,10 +18,10 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - containerPort: {{ .Values.containerPort }}
-         resources:
-           requests:
-             memory: 32Mi
-             cpu: 5m      
+          resources:
+            requests:
+              memory: 32Mi
+              cpu: 5m      
   strategy:
     canary:
       steps:
