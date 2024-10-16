@@ -5,7 +5,7 @@ image:
   repository: argoproj/rollouts-demo
   tag: blue
 
-containerPort:  15672  # Replace with your container port
+containerPort:  80  # Replace with your container port
 
 service:
   enabled: true
