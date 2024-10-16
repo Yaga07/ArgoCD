@@ -1,31 +1,19 @@
-{{- if .Values.ingress.enabled -}}
-{{- $fullName := include "my-app.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
-  labels:
-    {{ include "my-app.fullname" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+  name: {{ include "my-app.fullname" . }}-ingress
+  namespace: {{ .Values.namespace }}
   annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    kubernetes.io/ingress.class: nginx  # Specify your ingress class if needed
 spec:
-  ingressClassName: nginx
   rules:
-    {{- range .Values.ingress.hosts }}
-    - host: "{{ .subdomain }}.{{ .domain }}"
+    - host: {{ .Values.ingress.hostname }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            pathType: {{ .pathType }}
+          - path: {{ .Values.ingress.path }}
+            pathType: {{ .Values.ingress.pathType }}
             backend:
               service:
-                name: {{ $fullName }}
+                name: {{ include "my-app.service.name" . }}
                 port:
-                  number: {{ $svcPort }}
-          {{- end }}
-    {{- end }}
-  {{- end }}
+                  number: {{ .Values.service.port }}
