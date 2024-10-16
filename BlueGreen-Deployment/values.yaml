@@ -15,6 +15,6 @@ service:
 
 ingress:
   enabled: true
-  hostname: green.jojos.tech
+  hostname: blue.jojos.tech
   path: /
   pathType: Prefix
