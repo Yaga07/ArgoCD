@@ -15,6 +15,6 @@ service:
 
 ingress:
   enabled: true
-  hostname: rabbitmq.jojos.tech
+  hostname: green.jojos.tech
   path: /
   pathType: Prefix
