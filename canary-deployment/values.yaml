@@ -3,7 +3,7 @@ replicaCount: 5
 
 image:
   repository:   rabbitmq
-  tag: 3.8-management-alpine  
+  tag: 3.12.14-management-alpine #3.8-management-alpine  
 
 containerPort:  15672  # Replace with your container port
 
