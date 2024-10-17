@@ -3,7 +3,7 @@ replicaCount: 5
 
 image:
   repository: argoproj/rollouts-demo
-  tag: blue
+  tag: green
 
 containerPort:  80  # Replace with your container port
 
