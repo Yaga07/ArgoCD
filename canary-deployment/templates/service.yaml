@@ -10,16 +10,16 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
   type: {{ .Values.service.type }}
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: {{ include "my-app.service.name" . }}-preview
-#   namespace: {{ .Values.namespace }}
-# spec:
-#   selector:
-#     app: {{ include "my-app.fullname" . }}
-#   ports:
-#     - port: {{ .Values.service.port }}
-#       targetPort: {{ .Values.service.targetPort }}
-  # type: {{ .Values.service.type }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "my-app.service.name" . }}-preview
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ include "my-app.fullname" . }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+  type: {{ .Values.service.type }}
